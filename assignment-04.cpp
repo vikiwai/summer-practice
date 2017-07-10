@@ -31,6 +31,22 @@ void bubble_sort(int* arr, int size)
     }
 }
 
+void buble_sort_Iverson1(int* arr, int size)
+{
+    bool already_sorted = true;
+    for(int i = size; i > 0; i--) {
+        for(int j = 0; j < i - 1; j++) {
+            if(arr[j] >= arr[j + 1]) { // Сравнивание двух соседних переменных
+                int temp = arr[j];
+                arr[j] = arr[j + 1]; // Обмен двух переменных местами
+                arr[j + 1] = temp;
+                already_sorted = false;
+            }
+        }
+        if(already_sorted) break;
+    }
+}
+
 void copy(int* target, int* source, int size)
 {
     for (int i=0; i < size; i++){
@@ -54,17 +70,25 @@ int main() {
         arr[i] = -10000 + rand()%(20001);
     }
 
-    int arr1[N];
-    
-    copy(arr1, arr, N);
-    bubble_sort(arr1, N);
-
     cout << "Заданный массив:" << endl;
     print_array(arr, N);
     cout << endl;
 
-    cout  << "Массив после сортировки:" << endl;
+    int arr1[N];
+
+    copy(arr1, arr, N);
+    bubble_sort(arr1, N);
+
+    cout << "Массив после сортировки пузырьком:" << endl;
     print_array(arr1, N);
+    cout << endl;
+
+    copy(arr1, arr, N);
+    buble_sort_Iverson1(arr1, N);
+
+    cout << "Массив после сортировки пузырьком с условием Айверсона 1:" << endl;
+    print_array(arr1, N);
+    cout << endl;
 
     return 0;
 }
