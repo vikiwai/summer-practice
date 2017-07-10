@@ -34,17 +34,42 @@ void bubble_sort(int* arr, int size)
 void buble_sort_Iverson1(int* arr, int size)
 {
     bool already_sorted = true;
+
     for(int i = size; i > 0; i--) {
         for(int j = 0; j < i - 1; j++) {
             if(arr[j] >= arr[j + 1]) { // Сравнивание двух соседних переменных
                 int temp = arr[j];
                 arr[j] = arr[j + 1]; // Обмен двух переменных местами
                 arr[j + 1] = temp;
+
                 already_sorted = false;
             }
         }
+
         if(already_sorted) break;
     }
+}
+
+void buble_sort_Iverson2(int* arr, int size)
+{
+    int last_swap = size - 1;
+
+    do {
+        int new_last_swap = 0;
+
+        for(int j = 0; j < last_swap; j++) {
+            if(arr[j] >= arr[j + 1]) { // Сравнивание двух соседних переменных
+                int temp = arr[j];
+                arr[j] = arr[j + 1]; // Обмен двух переменных местами
+                arr[j + 1] = temp;
+
+                new_last_swap = j;
+            }
+        }
+
+        last_swap = new_last_swap;
+
+    } while (last_swap !=0);
 }
 
 void copy(int* target, int* source, int size)
@@ -87,6 +112,13 @@ int main() {
     buble_sort_Iverson1(arr1, N);
 
     cout << "Массив после сортировки пузырьком с условием Айверсона 1:" << endl;
+    print_array(arr1, N);
+    cout << endl;
+
+    copy(arr1, arr, N);
+    buble_sort_Iverson2(arr1, N);
+
+    cout << "Массив после сортировки пузырьком с условием Айверсона 2:" << endl;
     print_array(arr1, N);
     cout << endl;
 
