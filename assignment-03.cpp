@@ -7,6 +7,15 @@
 #include <iostream>
 using namespace std;
 
+void print_array(int* arr, int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        cout << arr[i] << " ";
+    }
+
+    cout << endl;
+}
 
 int main() {
     int N;
@@ -26,11 +35,8 @@ int main() {
     cout << endl;
 
     cout << "Заданный массив:" << endl;
-    for (int i = 0; i < N; i++)
-    {
-        cout << arr[i] << " ";
-    }
-    cout << endl << endl;
+    print_array(arr, N);
+    cout << endl;
 
     for(int i = N; i > 0; i--) {
         for(int j = 0; j < i - 1; j++) {
@@ -43,11 +49,7 @@ int main() {
     }
 
     cout  << "Массив после сортировки:" << endl;
-    for (int i = 0; i < N; i++)
-    {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
+    print_array(arr, N);
 
     return 0;
 }
