@@ -5,6 +5,7 @@
  */
 
 #include <iostream>
+#include <ctime>
 using namespace std;
 
 void print_array(int* arr, int size)
@@ -25,14 +26,12 @@ int main() {
     cin >> N;
     cout << endl;
 
-    cout << "Введите элементы массива:" << endl;
+    srand((unsigned int) time(NULL));
+
     int arr[N];
-    for (int i = 0; i < N; i++)
-    {
-        cout << "[" << i << "] = ";
-        cin >> arr[i];
+    for (int i = 0; i < N; i++) {
+        arr[i] = -10000 + rand()%(20001);
     }
-    cout << endl;
 
     cout << "Заданный массив:" << endl;
     print_array(arr, N);
