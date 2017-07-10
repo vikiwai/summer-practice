@@ -31,6 +31,13 @@ void bubble_sort(int* arr, int size)
     }
 }
 
+void copy(int* target, int* source, int size)
+{
+    for (int i=0; i < size; i++){
+        target[i] = source[i];
+    }
+}
+
 int main() {
     int N;
 
@@ -47,14 +54,17 @@ int main() {
         arr[i] = -10000 + rand()%(20001);
     }
 
-    bubble_sort(arr, N);
+    int arr1[N];
+    
+    copy(arr1, arr, N);
+    bubble_sort(arr1, N);
 
     cout << "Заданный массив:" << endl;
     print_array(arr, N);
     cout << endl;
 
     cout  << "Массив после сортировки:" << endl;
-    print_array(arr, N);
+    print_array(arr1, N);
 
     return 0;
 }
