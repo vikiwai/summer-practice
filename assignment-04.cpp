@@ -18,6 +18,19 @@ void print_array(int* arr, int size)
     cout << endl;
 }
 
+void bubble_sort(int* arr, int size)
+{
+    for(int i = size; i > 0; i--) {
+        for(int j = 0; j < i - 1; j++) {
+            if(arr[j] >= arr[j + 1]) { // Сравнивание двух соседних переменных
+                int temp = arr[j];
+                arr[j] = arr[j + 1]; // Обмен двух переменных местами
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
 int main() {
     int N;
 
@@ -29,23 +42,16 @@ int main() {
     srand((unsigned int) time(NULL));
 
     int arr[N];
+
     for (int i = 0; i < N; i++) {
         arr[i] = -10000 + rand()%(20001);
     }
 
+    bubble_sort(arr, N);
+
     cout << "Заданный массив:" << endl;
     print_array(arr, N);
     cout << endl;
-
-    for(int i = N; i > 0; i--) {
-        for(int j = 0; j < i - 1; j++) {
-            if(arr[j] >= arr[j + 1]) { // Сравнивание двух соседних переменных
-                int temp = arr[j];
-                arr[j] = arr[j + 1]; // Обмен двух переменных местами
-                arr[j + 1] = temp;
-            }
-        }
-    }
 
     cout  << "Массив после сортировки:" << endl;
     print_array(arr, N);
