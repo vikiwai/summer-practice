@@ -8,6 +8,12 @@
 #include <ctime>
 using namespace std;
 
+/**
+ * Метод, копирующий иходный массив
+ * @param target Массив, в который нужно скопировать
+ * @param source Массив - источник
+ * @param size Размер массива
+ */
 void copy(int* target, int* source, int size)
 {
     for (int i=0; i < size; i++){
@@ -15,6 +21,11 @@ void copy(int* target, int* source, int size)
     }
 }
 
+/**
+ * Метод для вывода массива на экран
+ * @param arr Массив
+ * @param size Размер массива
+ */
 void print_array(int* arr, int size)
 {
     for (int i = 0; i < size; i++){
@@ -24,16 +35,21 @@ void print_array(int* arr, int size)
     cout << endl;
 }
 
+/**
+ * Метод сортировки вставками
+ * @param arr Массив
+ * @param size Размер массива
+ */
 void insertion_sort(int* arr,int size)
 {
-
     int outer = 0, inner = 0, swaps = 0;
 
-    for (int i = 1; i < size; i++, outer += 1){
-        for (int j = i; j > 0 && arr[j-1] > arr[j]; j--, inner += 1){
+    for (int i = 1; i < size; i++, outer += 1) {
+        for (int j = i; j > 0 && arr[j-1] > arr[j]; j--, inner += 1) {
             int temp = arr[j-1];
             arr[j-1] = arr[j];
             arr[j] = temp;
+
             swaps +=1;
         }
     }
@@ -43,7 +59,14 @@ void insertion_sort(int* arr,int size)
     cout << "Количество обменов: " << swaps << endl;
 }
 
-
+/**
+ * Вспомогательный метод бинарного поиска
+ * @param arr Массив
+ * @param begin Левая граница
+ * @param end Правая граница
+ * @param target Заданный элемент
+ * @return
+ */
 int binary_search(int *arr, int begin, int end, int target)
 {
     while(begin - end < -1) {
@@ -68,11 +91,17 @@ int binary_search(int *arr, int begin, int end, int target)
     }
 }
 
-void insertion_binary_sort(int *arr, int end)
+/**
+ * Метод сортировки бинарными вставками
+ * @param arr Массив
+ * @param size Размер массива
+ */
+void insertion_binary_sort(int *arr, int size)
 {
     int outer = 0, inner = 0, swaps = 0;
 
-    for(int i = 1; i < end; i++, outer += 1) {
+    for (int i = 1; i < size; i++, outer += 1) {
+
         int new_position = binary_search(arr, 0, i, arr[i]);
 
         int temp = arr[i];
@@ -88,8 +117,13 @@ void insertion_binary_sort(int *arr, int end)
     cout << "Количество обменов: " << swaps << endl;
 }
 
-int main() {
-    int N;
+/**
+ * Основной метод
+ * @return
+ */
+int main()
+{
+    int N; // Размер массива
 
     cout << "Введите размер массива:" << endl;
     cout << "N = ";
@@ -98,7 +132,7 @@ int main() {
 
     srand((unsigned int) time(NULL));
 
-    int arr[N];
+    int arr[N]; // Исходный массив
 
     for (int i = 0; i < N; i++) {
         arr[i] = -10000 + rand()%(20001);
@@ -108,7 +142,7 @@ int main() {
     print_array(arr, N);
     cout << endl;
 
-    int arr1[N];
+    int arr1[N]; // Массив - копия исходника
 
     copy(arr1, arr, N);
     insertion_sort(arr1, N);
