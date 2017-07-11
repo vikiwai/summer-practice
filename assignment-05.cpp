@@ -24,7 +24,7 @@ void print_array(int* arr, int size)
     cout << endl;
 }
 
-void insertionSort(int* arr,int size)
+void insertion_sort(int* arr,int size)
 {
 
     int outer = 0, inner = 0, swaps = 0;
@@ -36,6 +36,51 @@ void insertionSort(int* arr,int size)
             arr[j] = temp;
             swaps +=1;
         }
+    }
+
+    cout << "Количество выполненных внешних циклов: " << outer << endl;
+    cout << "Количество выполненных внутренних циклов: " << inner << endl;
+    cout << "Количество обменов: " << swaps << endl;
+}
+
+
+int binary_search(int *arr, int begin, int end, int target)
+{
+    while(begin - end < -1) {
+        int mid = (begin + end) / 2;
+
+        if(arr[mid] > target) {
+            end = mid;
+        }
+        else {
+            begin = mid;
+        }
+    }
+
+    if(arr[begin] == target) {
+        return begin;
+    }
+    else if(target > arr[begin]) {
+        return end;
+    }
+    else {
+        return begin;
+    }
+}
+
+void insertion_binary_sort(int *arr, int end)
+{
+    int outer = 0, inner = 0, swaps = 0;
+
+    for(int i = 1; i < end; i++, outer += 1) {
+        int new_position = binary_search(arr, 0, i, arr[i]);
+
+        int temp = arr[i];
+        for(int j = i; j > new_position; j--, inner += 1) {
+            arr[j] = arr[j - 1];
+            swaps +=1;
+        }
+        arr[new_position] = temp;
     }
 
     cout << "Количество выполненных внешних циклов: " << outer << endl;
@@ -66,9 +111,16 @@ int main() {
     int arr1[N];
 
     copy(arr1, arr, N);
-    insertionSort(arr1, N);
+    insertion_sort(arr1, N);
 
     cout << "Массив после сортировки вставками:" << endl;
+    print_array(arr1, N);
+    cout << endl;
+
+    copy(arr1, arr, N);
+    insertion_binary_sort(arr1, N);
+
+    cout << "Массив после сортировки бинарными вставками:" << endl;
     print_array(arr1, N);
     cout << endl;
 
