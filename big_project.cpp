@@ -84,6 +84,8 @@ int main()
                     auto end_time = std::chrono::high_resolution_clock::now();
 
                     count += std::chrono::duration_cast<std::chrono::nanoseconds>(end_time - start_time).count();
+
+                    delete[] array;
                 }
 
                 output << count / 3 << ";";
