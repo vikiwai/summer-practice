@@ -158,9 +158,6 @@ int main()
     print_array(arr1, N);
     cout << endl;
 
-    copy(arr1, arr, N);
-    countingSort(arr1, N);
-
     return 0;
 }
 
