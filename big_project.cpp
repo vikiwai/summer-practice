@@ -21,17 +21,12 @@ int* reverseArray(int size);
 
 //*********************************************************//
 
-void copyArray(int* target, int* source, int size);
-
-void swap(int element1, int element2);
-
-void printArray(int* arr, int size);
+void swap(int& element1, int& element2);
 
 int binarySearch(int *arr, int begin, int end, int target);
 
-bool isSorted(int *arr, int size);
-
 typedef void (*sortFunction)(int* arr, int size);
+
 typedef int* (*typeArray)(int size);
 
 //*********************************************************//
@@ -160,27 +155,11 @@ int* reverseArray(int size)
 
 //*********************************************************//
 
-void copyArray(int* target, int* source, int size)
-{
-    for (int i=0; i < size; ++i) {
-        target[i] = source[i];
-    }
-}
-
-void swap(int element1, int element2)
+void swap(int& element1, int& element2)
 {
     int temp = element1;
     element1 = element2;
     element2 = temp;
-}
-
-void printArray(int* arr, int size)
-{
-    for (int i = 0; i < size; ++i) {
-        std::cout << arr[i] << " ";
-    }
-
-    std::cout << std::endl;
 }
 
 int binarySearch(int *arr, int begin, int end, int target)
@@ -202,17 +181,6 @@ int binarySearch(int *arr, int begin, int end, int target)
     } else /* target < arr[begin] */ {
         return begin;
     }
-}
-
-bool isSorted(int *arr, int size)
-{
-    for (int i = 0; i < size - 1; ++i) {
-        if (arr[i] > arr[i + 1]) {
-            return false;
-        }
-    }
-
-    return true;
 }
 
 //*********************************************************//
