@@ -48,22 +48,37 @@ void countingSort(int *arr, int size);
 
 int main()
 {
-    for (int j = 1000; j <= 9000; j += 1000) {
-        long long count = 0;
+    sortFunction sort_functions_algorithm[6] = {
+            &bubbleSort, &bubbleSortIversonCondition1, &bubbleSortIversonCondition2, &insertionSort,
+            &insertionBinarySort, &countingSort
+    };
 
-        for (int i = 0; i < 100; ++i) {
-            int *array = array1(j);
+    for (int x = 1000; x <= 9000; x += 1000){
+        std::cout << x << "\t";
+    }
 
-            auto start_time = std::chrono::high_resolution_clock::now();
+    std::cout << std::endl;
 
-            bubbleSort(array, j);
+    for (int k = 0; k < 6; ++k) {
+        for (int j = 1000; j <= 9000; j += 1000) {
+            long long count = 0;
 
-            auto end_time = std::chrono::high_resolution_clock::now();
+            for (int i = 0; i < 10; ++i) {
+                int *array = array1(j);
 
-            count += std::chrono::duration_cast<std::chrono::nanoseconds>(end_time - start_time).count();
+                auto start_time = std::chrono::high_resolution_clock::now();
+
+                (sort_functions_algorithm[k])(array, j);
+
+                auto end_time = std::chrono::high_resolution_clock::now();
+
+                count += std::chrono::duration_cast<std::chrono::nanoseconds>(end_time - start_time).count();
+            }
+
+            std::cout << count / 100 << "\t" << std::flush;
         }
 
-        std::cout << count / 100 << "\t" << std::flush;
+        std::cout << std::endl;
     }
 }
 
@@ -251,7 +266,7 @@ void insertionBinarySort(int *arr, int size)
     }
 }
 
-void сountingSort(int *arr, int size)
+void countingSort(int *arr, int size)
 {
     int index = 0;
     int min = arr[0];
