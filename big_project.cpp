@@ -22,10 +22,15 @@ int* array4(int size);
 //*********************************************************//
 
 void copyArray(int* target, int* source, int size);
+
 void swap(int element1, int element2);
+
 void printArray(int* arr, int size);
+
 int binarySearch(int *arr, int begin, int end, int target);
+
 bool isSorted(int *arr, int size);
+
 typedef void (*sortFunction)(int* arr, int size);
 
 //*********************************************************//
@@ -41,11 +46,23 @@ void countingSort(int *arr, int size);
 
 //*********************************************************//
 
-
-
 int main()
 {
+    long long count = 0;
 
+    for (int i = 0; i < 100; ++i) {
+        int *array = array1(1000);
+
+        auto start_time = std::chrono::high_resolution_clock::now();
+
+        bubbleSort(array, 1000);
+
+        auto end_time = std::chrono::high_resolution_clock::now();
+
+        count += std::chrono::duration_cast<std::chrono::nanoseconds>(end_time - start_time).count();
+    }
+
+    std::cout << count/100;
 }
 
 //*********************************************************//
