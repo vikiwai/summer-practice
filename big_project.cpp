@@ -48,21 +48,23 @@ void countingSort(int *arr, int size);
 
 int main()
 {
-    long long count = 0;
+    for (int j = 1000; j <= 9000; j += 1000) {
+        long long count = 0;
 
-    for (int i = 0; i < 100; ++i) {
-        int *array = array1(1000);
+        for (int i = 0; i < 100; ++i) {
+            int *array = array1(j);
 
-        auto start_time = std::chrono::high_resolution_clock::now();
+            auto start_time = std::chrono::high_resolution_clock::now();
 
-        bubbleSort(array, 1000);
+            bubbleSort(array, j);
 
-        auto end_time = std::chrono::high_resolution_clock::now();
+            auto end_time = std::chrono::high_resolution_clock::now();
 
-        count += std::chrono::duration_cast<std::chrono::nanoseconds>(end_time - start_time).count();
+            count += std::chrono::duration_cast<std::chrono::nanoseconds>(end_time - start_time).count();
+        }
+
+        std::cout << count / 100 << "\t" << std::flush;
     }
-
-    std::cout << count/100;
 }
 
 //*********************************************************//
