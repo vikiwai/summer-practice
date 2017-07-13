@@ -19,6 +19,17 @@ int* array2(int size);
 int* array3(int size);
 int* array4(int size);
 
+//*********************************************************//
+
+void copyArray(int* target, int* source, int size);
+void swap(int element1, int element2);
+void printArray(int* arr, int size);
+int binarySearch(int *arr, int begin, int end, int target);
+bool isSorted(int *arr, int size);
+typedef void (*sortFunction)(int* arr, int size);
+
+//*********************************************************//
+
 void bubbleSort(int *arr, int size);
 void bubbleSortIversonCondition1(int *arr, int size);
 void bubbleSortIversonCondition2(int *arr, int size);
@@ -28,16 +39,16 @@ void insertionBinarySort(int *arr, int size);
 
 void countingSort(int *arr, int size);
 
-void copyArray(int* target, int* source, int size);
-void swap(int element1, int element2);
-void printArray(int* arr, int size);
-int binarySearch(int *arr, int begin, int end, int target);
-bool isSorted(int *arr, int size);
-
 //*********************************************************//
+
+
 
 int main()
 {
+    std::string sortFunctionsNames[6] = { "Bubble", "Bubble IvC1", "Bubble IvC2", "Insertion", "Insertion Binary", "Counting" };
+    sortFunction algorithms[6] = { &bubbleSort, &bubbleSortIversonCondition1, &bubbleSortIversonCondition2,
+                              &insertionSort, &insertionBinarySort, &countingSort };
+
     srand(time(0));
 
     int** arrays = new int*[4];
@@ -47,38 +58,29 @@ int main()
     arrays[2] = array3(9000);
     arrays[3] = array4(9000);
 
-    std::cout << "4 arrays generated..." << std::endl;
-
     srand((unsigned int) time(NULL));
 
-    int arr[N]; // Исходный массив
-
-    for (int i = 0; i < N; i++) {
-        arr[i] = -10000 + rand()%(20001);
-    }
-
-    cout << "Заданный массив:" << endl;
-    print_array(arr, N);
-    cout << endl;
-
-    int arr1[N]; // Массив - копия исходника
-
-    copy(arr1, arr, N);
     const int array_size = 9000; // размер одномерного массива
+
     int array1[array_size]; // объявление одномерного массива
+
     for (int counter = 0; counter < array_size; counter++)
     {
         array1[counter] = rand() % 50 - rand() % 50; // заполняем массив случайными значениями в диапазоне от -49 до 49 включительно
-        cout << array1[counter] << " "; // печать элементов одномерного массива array1
+        std::cout << array1[counter] << " "; // печать элементов одномерного массива array1
     }
+
     int min = array1[0]; // переменная для хранения минимального значения
+
     for (int counter = 1; counter < array_size; counter++)
     {
         if ( min > array1[counter] ) // поиск минимального значения в одномерном массиве
             min = array1[counter];
     }
-    cout << "\nmin = " << min << endl;
-    cout << "runtime = " << clock()/1000.0 << endl; // время работы программы
+
+    std::cout << "\nmin = " << min << std::endl;
+    std::cout << "runtime = " << clock()/1000.0 << std::endl; // время работы программы
+
     system("pause");
 }
 

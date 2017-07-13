@@ -130,8 +130,6 @@ int main()
     cin >> N;
     cout << endl;
 
-    srand((unsigned int) time(NULL));
-
     int arr[N]; // Исходный массив
 
     for (int i = 0; i < N; i++) {
