@@ -49,6 +49,8 @@ void countingSort(int *arr, int size);
 
 int main()
 {
+    std::ofstream output("output.csv");
+
     std::string names[6] = { "Bubble", "Iverson 1", "Iverson 2", "Insertion", "Insertion Binary", "Counting" };
 
     sortFunction sort_functions_algorithm[6] = {
@@ -59,19 +61,22 @@ int main()
     typeArray type_of_array[4] = { miniRandomArray, randomArray, almostSortedArray, reverseArray };
 
     for (int y = 0; y < 4; ++y) {
-
+        output << ";";
         std::cout << "\t";
 
         for (int x = 1000; x <= 9000; x += 1000){
+            output << x << ";";
             std::cout << x << "\t";
         }
 
+        output << std::endl;
         std::cout << std::endl;
 
         for (int k = 0; k < 6; ++k) {
+            output << names[k] << ";";
             std::cout << names[k] << "\t";
-            for (int j = 1000; j <= 9000; j += 1000) {
 
+            for (int j = 1000; j <= 9000; j += 1000) {
                 long long count = 0;
 
                 for (int i = 0; i < 3; ++i) {
@@ -86,12 +91,15 @@ int main()
                     count += std::chrono::duration_cast<std::chrono::nanoseconds>(end_time - start_time).count();
                 }
 
+                output << count / 3 << ";";
                 std::cout << count / 3 << "\t" << std::flush;
             }
 
+            output << std::endl;
             std::cout << std::endl;
         }
 
+        output << std::endl;
         std::cout << std::endl;
     }
 }
