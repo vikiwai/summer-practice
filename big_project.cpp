@@ -32,6 +32,7 @@ int binarySearch(int *arr, int begin, int end, int target);
 bool isSorted(int *arr, int size);
 
 typedef void (*sortFunction)(int* arr, int size);
+typedef int* (*typeArray)(int size);
 
 //*********************************************************//
 
@@ -55,33 +56,40 @@ int main()
             &insertionBinarySort, &countingSort
     };
 
-    std::cout << "\t";
-    
-    for (int x = 1000; x <= 9000; x += 1000){
-        std::cout << x << "\t";
-    }
+    typeArray type_of_array[4] = { array1, array2, array3, array4 };
 
-    std::cout << std::endl;
+    for (int y = 0; y < 4; ++y) {
 
-    for (int k = 0; k < 6; ++k) {
-        std::cout << names[k] << "\t";
-        for (int j = 1000; j <= 9000; j += 1000) {
+        std::cout << "\t";
 
-            long long count = 0;
+        for (int x = 1000; x <= 9000; x += 1000){
+            std::cout << x << "\t";
+        }
 
-            for (int i = 0; i < 10; ++i) {
-                int *array = array1(j);
+        std::cout << std::endl;
 
-                auto start_time = std::chrono::high_resolution_clock::now();
+        for (int k = 0; k < 6; ++k) {
+            std::cout << names[k] << "\t";
+            for (int j = 1000; j <= 9000; j += 1000) {
 
-                (sort_functions_algorithm[k])(array, j);
+                long long count = 0;
 
-                auto end_time = std::chrono::high_resolution_clock::now();
+                for (int i = 0; i < 3; ++i) {
+                    int *array = (type_of_array[y])(j);
 
-                count += std::chrono::duration_cast<std::chrono::nanoseconds>(end_time - start_time).count();
+                    auto start_time = std::chrono::high_resolution_clock::now();
+
+                    (sort_functions_algorithm[k])(array, j);
+
+                    auto end_time = std::chrono::high_resolution_clock::now();
+
+                    count += std::chrono::duration_cast<std::chrono::nanoseconds>(end_time - start_time).count();
+                }
+
+                std::cout << count / 3 << "\t" << std::flush;
             }
 
-            std::cout << count / 100 << "\t" << std::flush;
+            std::cout << std::endl;
         }
 
         std::cout << std::endl;
