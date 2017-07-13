@@ -14,10 +14,10 @@
 #include <cstdlib>
 #include <chrono>
 
-int* array1(int size);
-int* array2(int size);
-int* array3(int size);
-int* array4(int size);
+int* miniRandomArray(int size);
+int* randomArray(int size);
+int* almostSortedArray(int size);
+int* reverseArray(int size);
 
 //*********************************************************//
 
@@ -56,7 +56,7 @@ int main()
             &insertionBinarySort, &countingSort
     };
 
-    typeArray type_of_array[4] = { array1, array2, array3, array4 };
+    typeArray type_of_array[4] = { miniRandomArray, randomArray, almostSortedArray, reverseArray };
 
     for (int y = 0; y < 4; ++y) {
 
@@ -98,7 +98,7 @@ int main()
 
 //*********************************************************//
 
-int* array1(int size)
+int* miniRandomArray(int size)
 {
     int* array = new int[size];
 
@@ -109,7 +109,7 @@ int* array1(int size)
     return array;
 }
 
-int* array2(int size)
+int* randomArray(int size)
 {
     int* array = new int[size];
 
@@ -120,7 +120,7 @@ int* array2(int size)
     return array;
 }
 
-int* array3(int size)
+int* almostSortedArray(int size)
 {
     int* array = new int[size];
 
@@ -139,7 +139,7 @@ int* array3(int size)
     return array;
 }
 
-int* array4(int size)
+int* reverseArray(int size)
 {
     int* array = new int[size];
 
