@@ -45,43 +45,7 @@ void countingSort(int *arr, int size);
 
 int main()
 {
-    std::string sortFunctionsNames[6] = { "Bubble", "Bubble IvC1", "Bubble IvC2", "Insertion", "Insertion Binary", "Counting" };
-    sortFunction algorithms[6] = { &bubbleSort, &bubbleSortIversonCondition1, &bubbleSortIversonCondition2,
-                              &insertionSort, &insertionBinarySort, &countingSort };
 
-    srand(time(0));
-
-    int** arrays = new int*[4];
-
-    arrays[0] = array1(9000);
-    arrays[1] = array2(9000);
-    arrays[2] = array3(9000);
-    arrays[3] = array4(9000);
-
-    srand((unsigned int) time(NULL));
-
-    const int array_size = 9000; // размер одномерного массива
-
-    int array1[array_size]; // объявление одномерного массива
-
-    for (int counter = 0; counter < array_size; counter++)
-    {
-        array1[counter] = rand() % 50 - rand() % 50; // заполняем массив случайными значениями в диапазоне от -49 до 49 включительно
-        std::cout << array1[counter] << " "; // печать элементов одномерного массива array1
-    }
-
-    int min = array1[0]; // переменная для хранения минимального значения
-
-    for (int counter = 1; counter < array_size; counter++)
-    {
-        if ( min > array1[counter] ) // поиск минимального значения в одномерном массиве
-            min = array1[counter];
-    }
-
-    std::cout << "\nmin = " << min << std::endl;
-    std::cout << "runtime = " << clock()/1000.0 << std::endl; // время работы программы
-
-    system("pause");
 }
 
 //*********************************************************//
@@ -91,7 +55,6 @@ int* array1(int size)
     int* array = new int[size];
 
     for (int i = 0; i < size; ++i) {
-
         array[i] = (int)(rand() % 7);
     }
 
@@ -103,7 +66,6 @@ int* array2(int size)
     int* array = new int[size];
 
     for (int i = 0; i < size; ++i) {
-
         array[i] = (int)(rand());
     }
 
@@ -115,14 +77,12 @@ int* array3(int size)
     int* array = new int[size];
 
     for (int i = 0; i < size; ++i) {
-
         array[i] = i;
     }
 
     int index1, index2;
 
     for (int i = 0; i < 5; ++i) {
-
         index1 = rand() % size;
         index2 = rand() % size;
         swap(array[index1], array[index2]);
@@ -136,7 +96,6 @@ int* array4(int size)
     int* array = new int[size];
 
     for (int i = 0; i < size; ++i) {
-
         array[i] = size - i;
     }
 
@@ -148,7 +107,6 @@ int* array4(int size)
 void copyArray(int* target, int* source, int size)
 {
     for (int i=0; i < size; ++i) {
-
         target[i] = source[i];
     }
 }
@@ -163,7 +121,6 @@ void swap(int element1, int element2)
 void printArray(int* arr, int size)
 {
     for (int i = 0; i < size; ++i) {
-
         std::cout << arr[i] << " ";
     }
 
@@ -173,7 +130,6 @@ void printArray(int* arr, int size)
 int binarySearch(int *arr, int begin, int end, int target)
 {
     while (begin - end < -1) {
-
         int middle = (begin + end) / 2;
 
         if (arr[middle] > target) {
@@ -195,7 +151,6 @@ int binarySearch(int *arr, int begin, int end, int target)
 bool isSorted(int *arr, int size)
 {
     for (int i = 0; i < size - 1; ++i) {
-
         if (arr[i] > arr[i + 1]) {
             return false;
         }
@@ -209,9 +164,7 @@ bool isSorted(int *arr, int size)
 void bubbleSort(int *arr, int size)
 {
     for (int i = size; i > 0; --i) {
-
         for (int j = 0; j < i - 1; ++j) {
-
             if (arr[j] >= arr[j + 1]) {
                 swap(arr[j], arr[j + 1]);
             }
@@ -224,9 +177,7 @@ void bubbleSortIversonCondition1(int *arr, int size)
     bool already_sorted = true;
 
     for (int i = size; i > 0; --i) {
-
         for (int j = 0; j < i - 1; ++j) {
-
             if (arr[j] >= arr[j + 1]) {
                 swap(arr[j], arr[j + 1]);
                 already_sorted = false;
@@ -236,7 +187,6 @@ void bubbleSortIversonCondition1(int *arr, int size)
         if (already_sorted)
             break;
     }
-
 }
 
 void bubbleSortIversonCondition2(int *arr, int size)
@@ -247,7 +197,6 @@ void bubbleSortIversonCondition2(int *arr, int size)
         int new_last_swap = 0;
 
         for (int j = 0; j < last_swap; ++j) {
-
             if (arr[j] >= arr[j + 1]) {
                 swap(arr[j], arr[j + 1]);
                 new_last_swap = j;
@@ -257,15 +206,12 @@ void bubbleSortIversonCondition2(int *arr, int size)
         last_swap = new_last_swap;
 
     } while (last_swap != 0);
-
 }
 
 void insertionSort(int *arr, int size)
 {
     for (int i = 1; i < size; ++i) {
-
         for (int j = i; j > 0 && arr[j - 1] > arr[j]; --j) {
-
             swap(arr[j], arr[j - 1]);
         }
     }
@@ -274,13 +220,11 @@ void insertionSort(int *arr, int size)
 void insertionBinarySort(int *arr, int size)
 {
     for (int i = 1; i < size; ++i) {
-
         int new_position = binarySearch(arr, 0, i, arr[i]);
 
         int temp = arr[i];
 
         for (int j = i; j > new_position; --j) {
-
             arr[j] = arr[j - 1];
         }
 
@@ -291,34 +235,27 @@ void insertionBinarySort(int *arr, int size)
 void сountingSort(int *arr, int size)
 {
     int index = 0;
-    int min, max;
-
-    min = max = arr[0];
+    int min = arr[0];
+    int max = arr[0];
 
     for (int i = 1; i < size; ++i) {
-
         min = (arr[i] < min) ? arr[i] : min;
         max = (arr[i] > max) ? arr[i] : max;
     }
 
     int range = max - min + 1;
-
     int *count = new int[range];
 
     for (int i = 0; i < range; ++i) {
-
         count[i] = 0;
     }
 
     for (int i = 0; i < size; ++i) {
-
         count[arr[i] - min] += 1;
     }
 
     for (int i = min; i <= max; ++i) {
-
         for (int j = 0; j < count[i - min]; ++j) {
-
             arr[index] = i;
             index += 1;
         }
