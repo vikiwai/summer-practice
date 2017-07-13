@@ -2,7 +2,7 @@
  *  Учебная практика 2017, BIG PROJECT
  *  Буняева Виктория Андреевна, БПИ 162
  *  Среда разработки: CLion 2017.1.3
- *  Цель работы: экспериментальное определение времени сортировок различных массивов разными методами
+ *  Цель работы: экспериментальное определение времени сортировок различных массивов по возрастанию разными методами
  *               и сравнительный анализ полученных результатов
  *  Что сделано:
  *  Что не сделано:
@@ -19,17 +19,37 @@ void insertionBinarySort(int *arr, int size);
 
 void countingSort(int *arr, int size);
 
+void copyArray(int* target, int* source, int size);
 void swap(int element1, int element2);
-
+void printArray(int* arr, int size);
 int binarySearch(int *arr, int begin, int end, int target);
+bool isSorted(int *arr, int size);
 
 //*********************************************************//
+
+void copyArray(int* target, int* source, int size)
+{
+    for (int i=0; i < size; ++i) {
+
+        target[i] = source[i];
+    }
+}
 
 void swap(int element1, int element2)
 {
     int temp = element1;
     element1 = element2;
     element2 = temp;
+}
+
+void printArray(int* arr, int size)
+{
+    for (int i = 0; i < size; ++i) {
+
+        std::cout << arr[i] << " ";
+    }
+
+    std::cout << std::endl;
 }
 
 int binarySearch(int *arr, int begin, int end, int target)
@@ -49,9 +69,21 @@ int binarySearch(int *arr, int begin, int end, int target)
         return begin;
     } else if (target > arr[begin]) {
         return end;
-    } else {
+    } else /* target < arr[begin] */ {
         return begin;
     }
+}
+
+bool isSorted(int *arr, int size)
+{
+    for (int i = 0; i < size - 1; ++i) {
+
+        if (arr[i] > arr[i + 1]) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 //*********************************************************//
@@ -112,9 +144,9 @@ void bubbleSortIversonCondition2(int *arr, int size)
 
 void insertionSort(int *arr, int size)
 {
-    for (int i = 1; i < size; i++) {
+    for (int i = 1; i < size; ++i) {
 
-        for (int j = i; j > 0 && arr[j - 1] > arr[j]; j--) {
+        for (int j = i; j > 0 && arr[j - 1] > arr[j]; --j) {
 
             swap(arr[j], arr[j - 1]);
         }
@@ -123,13 +155,13 @@ void insertionSort(int *arr, int size)
 
 void insertionBinarySort(int *arr, int size)
 {
-    for (int i = 1; i < size; i++) {
+    for (int i = 1; i < size; ++i) {
 
         int new_position = binarySearch(arr, 0, i, arr[i]);
 
         int temp = arr[i];
 
-        for (int j = i; j > new_position; j--) {
+        for (int j = i; j > new_position; --j) {
 
             arr[j] = arr[j - 1];
         }
@@ -145,7 +177,7 @@ void сountingSort(int *arr, int size)
 
     min = max = arr[0];
 
-    for (int i = 1; i < size; i++) {
+    for (int i = 1; i < size; ++i) {
 
         min = (arr[i] < min) ? arr[i] : min;
         max = (arr[i] > max) ? arr[i] : max;
@@ -155,19 +187,19 @@ void сountingSort(int *arr, int size)
 
     int *count = new int[range];
 
-    for (int i = 0; i < range; i++) {
+    for (int i = 0; i < range; ++i) {
 
         count[i] = 0;
     }
 
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size; ++i) {
 
         count[arr[i] - min] += 1;
     }
 
-    for (int i = min; i <= max; i++) {
+    for (int i = min; i <= max; ++i) {
 
-        for (int j = 0; j < count[i - min]; j++) {
+        for (int j = 0; j < count[i - min]; ++j) {
 
             arr[index] = i;
             index += 1;
