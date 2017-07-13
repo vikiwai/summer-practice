@@ -48,11 +48,15 @@ void countingSort(int *arr, int size);
 
 int main()
 {
+    std::string names[6] = { "Bubble", "Iverson 1", "Iverson 2", "Insertion", "Insertion Binary", "Counting" };
+
     sortFunction sort_functions_algorithm[6] = {
             &bubbleSort, &bubbleSortIversonCondition1, &bubbleSortIversonCondition2, &insertionSort,
             &insertionBinarySort, &countingSort
     };
 
+    std::cout << "\t";
+    
     for (int x = 1000; x <= 9000; x += 1000){
         std::cout << x << "\t";
     }
@@ -60,7 +64,9 @@ int main()
     std::cout << std::endl;
 
     for (int k = 0; k < 6; ++k) {
+        std::cout << names[k] << "\t";
         for (int j = 1000; j <= 9000; j += 1000) {
+
             long long count = 0;
 
             for (int i = 0; i < 10; ++i) {
