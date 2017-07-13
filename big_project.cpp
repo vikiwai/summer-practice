@@ -72,7 +72,7 @@ int* array1(int size)
     int* array = new int[size];
 
     for (int i = 0; i < size; ++i) {
-        array[i] = (int)(rand() % 7);
+        array[i] = rand() % 7;
     }
 
     return array;
@@ -83,7 +83,7 @@ int* array2(int size)
     int* array = new int[size];
 
     for (int i = 0; i < size; ++i) {
-        array[i] = (int)(rand());
+        array[i] = rand();
     }
 
     return array;
