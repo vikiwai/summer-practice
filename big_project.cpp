@@ -44,6 +44,8 @@ void countingSort(int *arr, int size);
 
 int main()
 {
+    srand((unsigned int) time(NULL));
+
     std::ofstream output("output.csv");
 
     std::string names[6] = { "Bubble", "Iverson 1", "Iverson 2", "Insertion", "Insertion Binary", "Counting" };
